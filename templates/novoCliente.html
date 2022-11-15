@@ -1,0 +1,41 @@
+{% extends  'template.html'%}
+{% block conteudo %}
+      <form class="formularioJogo" action="{{ url_for('criarUsuario') }}" method="post">
+
+        <fieldset>
+          {{ form.csrf_token() }}
+          <div class="form-group inputBox">
+            {{form.cpf.label(class="form-label")}}
+            {{form.cpf(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.nome.label(class="form-label")}}
+            {{form.nome(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.data.label(class="form-label")}}
+            {{form.data(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.telefone.label(class="form-label")}}
+            {{form.telefone(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.email.label(class="form-label")}}
+            {{form.email(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.endereco.label(class="form-label")}}
+            {{form.endereco(class="form-control")}}
+          </div>
+          <div class="form-group inputBox">
+            {{form.senha.label(class="form-label")}}
+            {{form.senha(class="form-control")}}
+          </div>
+          <div  class="form-group buttons">
+            {{form.salvar(class="btn-primary")}}
+            <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
+          </div>
+        </fieldset>
+      </form>
+{% endblock %}
