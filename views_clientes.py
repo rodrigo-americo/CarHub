@@ -58,6 +58,39 @@ def criarUsuario():
     return redirect(url_for('index'))
 
 
+@app.route('/editar-cliente/<string:email>')
+def editarCliente(email):
+    cliente = Clientes.query.filter_by(email=email).first()
+    form = FormularioClientes()
+
+    form.cpf.data = cliente.cpf
+    form.nome.data = cliente.nome
+    form.data.data = cliente.data
+    form.telefone.data = cliente.telefone
+    form.email.data = cliente.email
+    form.endereco.data = cliente.endereco
+
+    return render_template('editarCliente.html', titulo='Editar Infos',
+                           email=email, form=form)
+
+@app.route('/atualizar-cliente',methods=['POST'])
+def atualizarCliente():
+    form = FormularioClientes(request.form)
+    if form.validate_on_submit():
+        cliente = Clientes.query.filter_by(email=request.form['email']).first()
+        cliente.cpf = form.cpf.data
+        cliente.nome = form.nome.data
+        cliente.data = form.data.data
+        cliente.telefone = form.telefone.data
+        cliente.email = form.email.data
+        cliente.endereco = form.endereco.data
+        cliente.senha = generate_password_hash(form.senha.data).decode('utf-8')
+
+        db.session.add(cliente)
+        db.session.commit()
+
+    return redirect(url_for('index'))
+
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None

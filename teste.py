@@ -80,7 +80,7 @@ cliente = [
       ("99999999956", "Rodrigo", "11/05/1998 ", "11964802626",
        "rodrigo_7_4_7@hotmail.com", "Rua do retiro 2251", generate_password_hash("123").decode("utf-8")),
       ("99999889956", "Diego", "11/05/1998 ", "11970867253",
-       "oliver.diegoramus@hotmail.com", "pass ", generate_password_hash("123").decode("utf-8"))
+       "oliver.diegoramos@hotmail.com", "pass ", generate_password_hash("123").decode("utf-8"))
 ]
 
 cursor.executemany(cliente_sql, cliente)

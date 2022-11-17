@@ -3,7 +3,9 @@
         <a class="btn btn-primary" href="{{ url_for('login') }}">Login</a>
         <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
         <a class="btn btn-primary" href="{{ url_for('novo') }}">Cadastrar serviço</a>
+        <a class="btn btn-primary" href="{{ url_for('editarCliente',email='rodrigo_7_4_7@hotmail.com') }}">Editar cliente</a>
         <form action="{{ url_for('resultado') }}" method="post">
+            {{ form.csrf_token() }}
             <input type="text" value="Pesquisa" name="busca" >
             <button  type="submit">Buscar</button>
         </form>
@@ -11,7 +13,15 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                   <div class="col">
                     <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                        {% for imagem in lista_imagens  %}
+                            {% if 'logo' in imagem %}
+                                <img src="{{url_for('imagem',nome_arquivo=imagem)}}" class="card-img-top">
+                                { % break %}
+                            {% else %}
+                                <img src="uploads/capa_padrao.jpg" class="card-img-top">
+                            {% endif %}
+
+                        {% endfor %}
                       <div class="card-body">
                         <h5 class="card-title">{{serviso.nome}}</h5>
                         <ul>

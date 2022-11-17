@@ -1,3 +1,5 @@
+import os
+
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from jogoteca import db, app
 from models import Servisos
@@ -8,9 +10,11 @@ import time
 
 @app.route('/')
 def index():
+    lista_imagens = os.listdir(app.config['UPLOADS_PAHT'])
+    form = FormularioServico()
     lista_de_servisos = Servisos.query.order_by(Servisos.id)
     return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos
-                           , recupera_imagem=recupera_imagem())
+                           , form=form, lista_imagens=lista_imagens)
 
 
 @app.route('/novo')
@@ -63,7 +67,7 @@ def editar(id):
     return render_template('editar.html', titulo='Editar servisos', id=id, capa_jogo=capa_jogo, form=form)
 
 
-@app.route('/atualizar', methods=['POST',])
+@app.route('/atualizar', methods=['POST'])
 def atualizar():
     form = FormularioServico(request.form)
     if form.validate_on_submit():
@@ -97,8 +101,9 @@ def deletar(id):
 
 @app.route('/resultado', methods=['POST'])
 def resultado():
+    form = FormularioServico()
     lista_de_servisos = Servisos.query.filter_by(categoria=request.form['busca'])
-    return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos)
+    return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos, form=form)
 
 
 @app.route('/uploads/<nome_arquivo>')
