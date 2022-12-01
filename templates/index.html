@@ -1,0 +1,8 @@
+{% extends  'template.html'%}
+{% block conteudo %}
+<p>  Texto sobre ser cliente e benbeficos de usar o site  </p>
+<a href="{{url_for('novoCliente')}}" >Cadastrar cliente</a>
+<p>  Texto sobre ser Prestador e benbeficos de usar o site  </p>
+<a href="{{url_for('novoPrestador')}}" >Cadastrar cliente</a>
+<a href="{{url_for('login')}}" >Login</a>
+{% endblock %}
