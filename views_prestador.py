@@ -27,7 +27,7 @@ def criarPrestador():
 
     db.session.add(prestador)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 
 @app.route('/editar-prestador/<string:email>')
@@ -62,4 +62,4 @@ def atualizarPrestador():
         db.session.add(prestador)
         db.session.commit()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))

@@ -10,11 +10,15 @@ import time
 
 @app.route('/')
 def index():
-    lista_imagens = os.listdir(app.config['UPLOADS_PAHT'])
+    return render_template('index.html', titulo='Servisos')
+
+
+@app.route('/lista')
+def listarServisos():
     form = FormularioServico()
     lista_de_servisos = Servisos.query.order_by(Servisos.id)
     return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos
-                           , form=form, lista_imagens=lista_imagens)
+                           , form=form)
 
 
 @app.route('/novo')
@@ -50,7 +54,7 @@ def criar():
     arquivo.save(f'{app.config["UPLOADS_PAHT"]}/logo{serviso.id}-{timestamp}.jpg')
     db.session.add(serviso)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 
 @app.route('/editar/<int:id>')
@@ -85,7 +89,7 @@ def atualizar():
         timestamp = time.time()
         arquivo = request.files['arquivo']
         arquivo.save(f'{app.config["UPLOADS_PAHT"]}/logo{serviso.id}-{timestamp}.jpg')
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 
 @app.route('/deletar/<int:id>')
@@ -96,7 +100,7 @@ def deletar(id):
     Servisos.query.filter_by(id=id).delete()
     db.session.commit()
     flash(f'Item {id} foi deletado')
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 
 @app.route('/resultado', methods=['POST'])

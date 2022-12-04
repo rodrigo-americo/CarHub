@@ -10,7 +10,7 @@ from flask_bcrypt import generate_password_hash
 def login():
     proxima = request.args.get('proxima')
     if proxima is None:
-        proxima = url_for('index')
+        proxima = url_for('listarServisos')
     form = FormularioClientes()
     return render_template('login.html', proxima=proxima, form=form)
 
@@ -55,11 +55,12 @@ def criarUsuario():
 
     db.session.add(cliente)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 
-@app.route('/editar-cliente/<string:email>')
-def editarCliente(email):
+@app.route('/editar-cliente')
+def editarCliente():
+    email = session['usuario_logado']
     cliente = Clientes.query.filter_by(email=email).first()
     form = FormularioClientes()
 
@@ -89,7 +90,7 @@ def atualizarCliente():
         db.session.add(cliente)
         db.session.commit()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('listarServisos'))
 
 @app.route('/logout')
 def logout():
