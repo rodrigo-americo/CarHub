@@ -1,10 +1,10 @@
-import os
-
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
+import webbrowser
 from jogoteca import db, app
-from models import Servisos
-
+from urllib.parse import quote
+from models import Servisos ,Clientes
 from helpers import recupera_imagem, deleta_imagem, FormularioServico
+
 import time
 
 
@@ -17,8 +17,9 @@ def index():
 def listarServisos():
     form = FormularioServico()
     lista_de_servisos = Servisos.query.order_by(Servisos.id)
+    email = session['usuario_logado']
     return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos
-                           , form=form)
+                           , form=form, email=email)
 
 
 @app.route('/novo')
@@ -45,8 +46,8 @@ def criar():
     if serviso_nome:
         flash('Serviso já existente')
         return redirect(url_for('criar'))
-
-    serviso = Servisos(nome=nome, valor=valor, categoria=categoria, descricao=descricao)
+    email = session['usuario_logado']
+    serviso = Servisos(nome=nome, valor=valor, email=email, categoria=categoria, descricao=descricao)
 
     timestamp = time.time()
     arquivo = request.files['arquivo']
@@ -54,6 +55,7 @@ def criar():
     arquivo.save(f'{app.config["UPLOADS_PAHT"]}/logo{serviso.id}-{timestamp}.jpg')
     db.session.add(serviso)
     db.session.commit()
+    flash('Até um aprocima')
     return redirect(url_for('listarServisos'))
 
 
@@ -94,7 +96,6 @@ def atualizar():
 
 @app.route('/deletar/<int:id>')
 def deletar(id):
-
     if 'usuario_logado' not in session or session['usuario_logado'] is None:
         return redirect(url_for('login'))
     Servisos.query.filter_by(id=id).delete()
@@ -106,7 +107,11 @@ def deletar(id):
 @app.route('/resultado', methods=['POST'])
 def resultado():
     form = FormularioServico()
-    lista_de_servisos = Servisos.query.filter_by(categoria=request.form['busca'])
+
+    if request.form['busca'] is None or request.form['busca'] in 'Pesquisar':
+        lista_de_servisos = Servisos.query.order_by(Servisos.id)
+    else:
+        lista_de_servisos = Servisos.query.filter_by(categoria=request.form['busca'])
     return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos, form=form)
 
 
@@ -124,3 +129,12 @@ def detalhe(id):
     form.categoria.data = serviso.categoria
     form.descricao.data = serviso.descricao
     return render_template('detalhe.html', form=form, capa_jogo=capa_jogo)
+
+
+@app.route('/whats/<string:email>')
+def mandarMensagem(email):
+    prestador = Clientes.query.filter_by(email=email).first()
+    msg = quote(f'Olá {prestador.nome}!  gostaria de solicitar um serviço.')
+    link = f'https://api.whatsapp.com/send/?phone=55{prestador.telefone}&text={msg}'
+    webbrowser.open_new(link)
+    return redirect(url_for('listarServisos'))

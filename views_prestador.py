@@ -22,7 +22,7 @@ def criarPrestador():
     localidade = form.localidade.data
     senha = generate_password_hash(form.senha.data).decode('utf-8')
 
-    prestador = PrestadorServico(cnpj=cnpj, nome=nome, data=data,
+    prestador = PrestadorServico(cnpj=cnpj, nome=nome,
                                  telefone=telefone, email=email, localidade=localidade, senha=senha)
 
     db.session.add(prestador)

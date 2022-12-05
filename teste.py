@@ -30,6 +30,7 @@ TABLES['Servisos'] = ('''
       `id` int(11) NOT NULL AUTO_INCREMENT,
       `nome` varchar(50) NOT NULL,
       `valor` int NOT NULL,
+      `email` varchar(100) NOT NULL,
       `categoria` varchar(40) NOT NULL,
       `descricao` varchar(250),
       PRIMARY KEY (`id`)
@@ -99,7 +100,7 @@ prestadores = [
        "rodrigo_7_4_7@hotmail.com", " Henrique Felipe da Costa, 682 - Vila Guilherme",
        generate_password_hash("1234").decode("utf-8")),
       ("99999999999946", "Hubens", "11970867253",
-       "oliver.diegoramus@hotmail.com", "pass ", generate_password_hash("1234").decode("utf-8"))
+       "oliver.diegoramos@hotmail.com", "pass ", generate_password_hash("1234").decode("utf-8"))
 ]
 cursor.executemany(prestadores_sql, prestadores)
 
@@ -111,14 +112,14 @@ for user in cursor.fetchall():
 
 
 # inserindo Serviços
-Servisos_sql = 'INSERT INTO Servisos (nome, valor, categoria,descricao) VALUES (%s, %s, %s,%s)'
+Servisos_sql = 'INSERT INTO Servisos (nome, valor,email, categoria,descricao) VALUES (%s, %s ,%s, %s,%s)'
 Servisos = [
-      ('Jogo de peneu', '50', 'Troca', 'troca os quatros peneus do caro'),
-      ('God of War', '15', 'PS2', 'pass'),
-      ('Mortal Kombat', '10', 'PS2', 'pass'),
-      ('Valorant', '123', 'PC', 'pass'),
-      ('Crash Bandicoot', '645', 'PS2', 'pass'),
-      ('Need for Speed', '879', 'PS2', 'pass'),
+      ('Jogo de peneu', '50', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'troca os quatros peneus do caro'),
+      ('God of War', '15', 'oliver.diegoramos@hotmail.com', 'PS2', 'pass'),
+      ('Mortal Kombat', '10', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
+      ('Valorant', '123', 'oliver.diegoramos@hotmail.com', 'PC', 'pass'),
+      ('Crash Bandicoot', '645', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
+      ('Need for Speed', '879', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
 ]
 cursor.executemany(Servisos_sql, Servisos)
 

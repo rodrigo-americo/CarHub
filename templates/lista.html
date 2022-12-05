@@ -18,8 +18,11 @@
                             <li><b>Valor:</b>{{serviso.valor}}</li>
                             <li><b>Categoria:</b>{{serviso.categoria}}</li>
                             <li><p>Descrição :{{serviso.descricao}} </p>
-                            <li><a href="{{url_for('editar',id=serviso.id)}}">Editar</a></li>
-                            <li><a href="{{url_for('deletar',id=serviso.id)}}">Deletar</a></li>
+                            {% if email == serviso.email %}
+                                <li><a href="{{url_for('editar',id=serviso.id)}}">Editar</a></li>
+                                <li><a href="{{url_for('deletar',id=serviso.id)}}">Deletar</a></li>
+                            {% endif %}
+                                <li><a href="{{url_for('mandarMensagem',email=serviso.email)}}">Whats</a></li>
                         </ul>
                       </div>
                     </div>

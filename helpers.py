@@ -3,6 +3,8 @@ from flask_wtf import FlaskForm
 from jogoteca import app
 from wtforms import StringField, IntegerField, validators, SubmitField, PasswordField
 
+from models import PrestadorServico
+
 
 class FormularioServico(FlaskForm):
     nome = StringField('Nome do serviço', [validators.data_required(), validators.length(min=1, max=50)])
@@ -44,3 +46,5 @@ def deleta_imagem(id):
     arquivo = recupera_imagem(id)
     if arquivo != 'capa_padrao.jpg':
         os.remove(os.path.join(app.config['UPLOADS_PAHT'], arquivo))
+
+

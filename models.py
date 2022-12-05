@@ -5,6 +5,7 @@ class Servisos(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(50), nullable=False)
     valor = db.Column(db.Integer, nullable=False)
+    email = db.Column(db.String(100), nullable=True)
     categoria = db.Column(db.String(40), nullable=False)
     descricao = db.Column(db.String(250))
 
