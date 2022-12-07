@@ -1,0 +1,77 @@
+.container {
+    position:fixed;
+    top: 50%;
+    left: 40%;
+    width:60em;
+    height:70em;
+    margin-top: -18em; /*set to a negative number 1/2 of your height*/
+    margin-left: -30em; /*set to a negative number 1/2 of your width*/
+    
+  }
+  /*ACHAR CONFIGURAÇÃO DO BOTÃO*/
+  .button {
+    background-color: white; /* Green */
+    border-radius: 8px;
+    color: black;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    
+  }
+  /* ACHAR BOM IDEAL PARA LOGO*/
+
+  /*achar um boa ideia de background*/
+
+  .divimage{
+    position:fixed;
+    top: 30%;
+    left: 48%;
+    width: 100px;
+    height:300px;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+
+  }
+.fonte {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    color:White; 
+  }
+
+.divbutton{
+  position:fixed;
+  top: 80%;
+  left: 58%;
+  width:50em;
+  height:30em;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+
+}
+
+footer{
+
+  position:fixed;
+  top: 97%;
+  left: 1%;
+  width:50em;
+  height:30em;
+  
+}
+.footer{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color:White; 
+  }
+
+.containerteste{
+margin-top: 5%;
+margin-left:40%
+
+}
+.title{
+    margin-top: 2%;
+    margin-left:15%
+}

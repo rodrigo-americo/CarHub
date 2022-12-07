@@ -1,0 +1,64 @@
+*{
+    padding:0;
+    margin:0;
+    font-family:'Times New Roman', Times, serif;
+    font-size:12px;
+}
+ul{
+    background-color: white;
+    list-style: none;
+}
+ul li{
+    display:inline-block;
+    position:relative;
+}
+ul li a {
+    display:block;
+    padding:29px 70px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 17px;
+    
+}
+ul li ul.dropdown li{
+    display:block;
+}
+ul li ul.dropdown{
+    width: 100%;
+    background: white;
+    position:absolute;
+    z-index: 999;
+    display: none;
+}
+ul li a:hover{
+    background: grey;
+
+}
+ul li:hover ul.dropdown{
+    display:block;
+}
+
+footer{
+
+    position:fixed;
+    top: 97%;
+    left: 1%;
+    width:50em;
+    height:30em;
+    
+  }
+p{
+    color:black;
+    font-size: 17px;
+}
+.footer{
+    color:white;
+    font-size: 20px;
+    text-align: center;
+}
+.logo{
+    display:flex;
+    margin-left:42%;
+    margin-top: 7%;
+}

@@ -1,0 +1,78 @@
+.container {
+    position:fixed;
+    top: 50%;
+    left: 52%;
+    width:30em;
+    height:18em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    
+  }
+  /*ACHAR CONFIGURAÇÃO DO BOTÃO*/
+  .button {
+    background-color: white; /* Green */
+    border-radius: 8px;
+    color: black;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    
+  }
+  /* ACHAR BOM IDEAL PARA LOGO*/
+
+  /*achar um boa ideia de background*/
+  body{
+    background: black;
+    
+
+    
+  }
+
+  .divimage{
+    position:fixed;
+    top: 30%;
+    left: 56%;
+    width: 100px;
+    height:300px;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+
+  }
+.fonte {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color:White; 
+  }
+
+.divbuttonregistrar{
+  position:fixed;
+  top: 60%;
+  left: 57%;
+  width:50em;
+  height:30em;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  font-size: 15px;
+}
+
+.divbuttonlogin{
+  position:fixed;
+  top: 68%;
+  left: 59%;
+  width:53em;
+  height:40em;
+  margin-top: -8em; /*set to a negative number 1/2 of your height*/
+  margin-left: -16em; /*set to a negative number 1/2 of your width*/
+
+}
+footer{
+
+  position:fixed;
+  top: 97%;
+  left: 1%;
+  width:50em;
+  height:30em;
+  
+}

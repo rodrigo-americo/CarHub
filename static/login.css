@@ -1,0 +1,64 @@
+.container {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em;
+    margin-left: -15em;
+
+  }
+  /ACHAR CONFIGURAÇÃO DO BOTÃO/
+  .button {
+    background-color: white; /* Green */
+    border-radius: 8px;
+    color: black;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+
+  }
+
+  body{
+    background: black;
+
+  }
+
+  .divimage{
+    position:fixed;
+    top: 30%;
+    left: 50%;
+    width: 100px;
+    height:300px;
+    margin-top: -9em;
+    margin-left: -15em;
+
+  }
+.fonte {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color:White;
+  }
+
+.divbutton{
+  position:fixed;
+  top: 80%;
+  left: 56%;
+  width:50em;
+  height:30em;
+  margin-top: -9em;
+  margin-left: -15em;
+
+}
+
+footer{
+
+  position:fixed;
+  top: 97%;
+  left: 1%;
+  width:50em;
+  height:30em;
+
+}
