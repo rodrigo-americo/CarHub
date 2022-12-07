@@ -20,8 +20,9 @@ def autenticar():
     email = form.email.data
     cliente = Clientes.query.filter_by(email=email).first()
     senha = check_password_hash(cliente.senha, form.senha.data)
-    prestador = Prestador.query.filter_by(email=email).first()
-    senhap = check_password_hash(prestador.senha, form.senha.data)
+    if cliente is None:
+        prestador = Prestador.query.filter_by(email=email).first()
+        senhap = check_password_hash(prestador.senha, form.senha.data)
     if cliente and senha:
         session['usuario_logado'] = cliente.email
         session['prestador'] = False
