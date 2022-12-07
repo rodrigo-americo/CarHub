@@ -1,20 +1,24 @@
-from flask import render_template, request, redirect, url_for
-from jogoteca import app, db
-from models import PrestadorServico
-from helpers import FormularioPrestadorServico
+from flask import render_template, request, redirect, url_for, flash
+from Carhub import app, db
+from models import Prestador, Clientes
+from helpers import FormularioPrestador
 from flask_bcrypt import generate_password_hash
 
 
 @app.route('/novo_prestador')
 def novoPrestador():
-    form = FormularioPrestadorServico()
+    form = FormularioPrestador()
     return render_template('novoPrestador.html', titulo='Novo Prestador', form=form)
 
 
 @app.route('/criar_prestador', methods=['POST', 'GET'])
 def criarPrestador():
-    form = FormularioPrestadorServico(request.form)
-
+    form = FormularioPrestador(request.form)
+    prestador_email = Prestador.query.filter_by(email=form.email.data).first()
+    cliente_email = Clientes.query.filter_by(email=form.email.data).first()
+    if prestador_email or cliente_email:
+        flash('Email já cadastrado')
+        return redirect(url_for('novoPrestador'))
     cnpj = form.cnpj.data
     nome = form.nome.data
     telefone = form.telefone.data
@@ -22,7 +26,7 @@ def criarPrestador():
     localidade = form.localidade.data
     senha = generate_password_hash(form.senha.data).decode('utf-8')
 
-    prestador = PrestadorServico(cnpj=cnpj, nome=nome,
+    prestador = Prestador(cnpj=cnpj, nome=nome,
                                  telefone=telefone, email=email, localidade=localidade, senha=senha)
 
     db.session.add(prestador)
@@ -32,8 +36,8 @@ def criarPrestador():
 
 @app.route('/editar-prestador/<string:email>')
 def editarPrestador(email):
-    prestador = PrestadorServico.query.filter_by(email=email).first()
-    form = FormularioPrestadorServico()
+    prestador = Prestador.query.filter_by(email=email).first()
+    form = FormularioPrestador()
 
     form.cnpj.data = prestador.cnpj
     form.nome.data = prestador.nome
@@ -48,9 +52,9 @@ def editarPrestador(email):
 
 @app.route('/atualizar-prestador', methods=['POST'])
 def atualizarPrestador():
-    form = FormularioPrestadorServico(request.form)
+    form = FormularioPrestador(request.form)
     if form.validate_on_submit():
-        prestador = PrestadorServico.query.filter_by(email=request.form['email']).first()
+        prestador = Prestador.query.filter_by(email=request.form['email']).first()
         prestador.cpf = form.cnpj.data
         prestador.nome = form.nome.data
         prestador.data = form.data.data

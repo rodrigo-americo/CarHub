@@ -1,13 +1,46 @@
 {% extends  'template.html'%}
+<link rel="stylesheet" href ="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href = "../statics/search.css">
+<link rel="stylesheet" href = "../statics/navbar.css">
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
 {% block conteudo %}
-        <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
-        <a class="btn btn-primary" href="{{ url_for('novo') }}">Cadastrar serviço</a>
-        <a class="btn btn-primary" href="{{ url_for('editarCliente',email='rodrigo_7_4_7@hotmail.com') }}">Editar cliente</a>
-        <form action="{{ url_for('resultado') }}" method="post">
-            {{ form.csrf_token() }}
-            <input type="text" value="Pesquisa" name="busca" >
-            <button  type="submit">Buscar</button>
-        </form>
+
+<ul>
+  <li>
+      <a href="#"> Perfil</a>
+      <ul class="dropdown">
+          <li>
+              <a href="{{ url_for('editarCliente')}}"> <p>Editar Perfil</p></a>
+          </li>
+          <li>
+              <a href="{{ url_for('logout') }}"> <p>Desconectar</p></a>
+          </li>
+          <li>
+              {% if prestador %}
+                <a href="{{ url_for('novo') }}"> <p>Cadastrar serviço</p></a>
+              {% endif %}
+        </li>
+      </ul>
+  </li>
+</ul>
+
+<form action="{{ url_for('resultado') }}" method="post">
+    {{ form.csrf_token() }}
+    <div class = "boxContainer">
+      <table class="elementsContainer">
+          <tr>
+              <td>
+                  <input type="text" name="busca" placeholder="Pesquise algum serviço ou peça!" class="search">
+              </td>
+              <td>
+                  <button  type="submit">Buscar</button>
+                  <i class="bi bi-search" style="color: white; margin-left:15px; width: 5px; height: 300px;"></i>
+              </td>
+          </tr>
+      </table>
+    </div>
+</form>
                 {%for serviso in lista_de_servisos %}
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                   <div class="col">
@@ -18,9 +51,11 @@
                             <li><b>Valor:</b>{{serviso.valor}}</li>
                             <li><b>Categoria:</b>{{serviso.categoria}}</li>
                             <li><p>Descrição :{{serviso.descricao}} </p>
-                            {% if email == serviso.email %}
-                                <li><a href="{{url_for('editar',id=serviso.id)}}">Editar</a></li>
-                                <li><a href="{{url_for('deletar',id=serviso.id)}}">Deletar</a></li>
+                            {% if prestador %}
+                                {% if email == serviso.email %}
+                                    <li><a href="{{url_for('editar',id=serviso.id)}}">Editar</a></li>
+                                    <li><a href="{{url_for('deletar',id=serviso.id)}}">Deletar</a></li>
+                                {% endif %}
                             {% endif %}
                                 <li><a href="{{url_for('mandarMensagem',email=serviso.email)}}">Whats</a></li>
                         </ul>

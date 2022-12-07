@@ -1,4 +1,4 @@
-from jogoteca import db
+from Carhub import db
 
 
 class Servisos(db.Model):
@@ -10,7 +10,7 @@ class Servisos(db.Model):
     descricao = db.Column(db.String(250))
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '<Name %r>' % self.nome
 
 
 class Clientes(db.Model):
@@ -23,10 +23,10 @@ class Clientes(db.Model):
     senha = db.Column(db.String(100), nullable=True)
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '<Name %r>' % self.nome
 
 
-class PrestadorServico(db.Model):
+class Prestador(db.Model):
     cnpj = db.Column(db.String(14), nullable=True)
     nome = db.Column(db.String(50), nullable=True)
     telefone = db.Column(db.String(11), nullable=True)
@@ -35,4 +35,4 @@ class PrestadorServico(db.Model):
     senha = db.Column(db.String(100), nullable=True)
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '<Name %r>' % self.nome

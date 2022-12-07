@@ -12,7 +12,7 @@ bcrypt = Bcrypt(app)
 from views_servisos import *
 from views_clientes import *
 from views_prestador import *
-
+from views_login import *
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 import webbrowser
-from jogoteca import db, app
+from Carhub import db, app
 from urllib.parse import quote
 from models import Servisos ,Clientes
 from helpers import recupera_imagem, deleta_imagem, FormularioServico
@@ -18,8 +18,9 @@ def listarServisos():
     form = FormularioServico()
     lista_de_servisos = Servisos.query.order_by(Servisos.id)
     email = session['usuario_logado']
+    prestador = session['prestador']
     return render_template('lista.html', titulo='Servisos', lista_de_servisos=lista_de_servisos
-                           , form=form, email=email)
+                           , form=form, email=email, prestador=prestador)
 
 
 @app.route('/novo')
@@ -61,7 +62,7 @@ def criar():
 
 @app.route('/editar/<int:id>')
 def editar(id):
-    capa_jogo = recupera_imagem(id)
+    logo = recupera_imagem(id)
     if 'usuario_logado' not in session or session['usuario_logado'] is None:
         return redirect(url_for('login', proxima=url_for(f'editar/{id}')))
     serviso = Servisos.query.filter_by(id=id).first()
@@ -70,7 +71,7 @@ def editar(id):
     form.valor.data = serviso.valor
     form.categoria.data = serviso.categoria
     form.descricao.data = serviso.descricao
-    return render_template('editar.html', titulo='Editar servisos', id=id, capa_jogo=capa_jogo, form=form)
+    return render_template('editar.html', titulo='Editar servisos', id=id, capa_jogo=logo, form=form)
 
 
 @app.route('/atualizar', methods=['POST'])

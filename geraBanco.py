@@ -48,8 +48,8 @@ TABLES['Clientes'] = ('''
       PRIMARY KEY (`email`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['PrestadorServico'] = ('''
-      CREATE TABLE `PrestadorServico` (
+TABLES['Prestador'] = ('''
+      CREATE TABLE `Prestador` (
       `cnpj` varchar(14) NOT NULL,
       `nome` varchar(50) NOT NULL,
       `telefone` varchar(11) NOT NULL,
@@ -93,19 +93,19 @@ for cliente in cursor.fetchall():
 
 
 # inserindo Prestadores de serviço
-prestadores_sql = 'INSERT INTO PrestadorServico (cnpj, nome, telefone, email, localidade, senha)' \
+prestadores_sql = 'INSERT INTO Prestador (cnpj, nome, telefone, email, localidade, senha)' \
                   ' VALUES (%s, %s, %s,%s,%s,%s)'
 prestadores = [
       ("99999999999999", "Cleber", "11970867253",
-       "rodrigo_7_4_7@hotmail.com", " Henrique Felipe da Costa, 682 - Vila Guilherme",
+       "cleber@hotmail.com", " Henrique Felipe da Costa, 682 - Vila Guilherme",
        generate_password_hash("1234").decode("utf-8")),
       ("99999999999946", "Hubens", "11970867253",
-       "oliver.diegoramos@hotmail.com", "pass ", generate_password_hash("1234").decode("utf-8"))
+       "hubens@hotmail.com", "pass ", generate_password_hash("1234").decode("utf-8"))
 ]
 cursor.executemany(prestadores_sql, prestadores)
 
-cursor.execute('select * from Carhub.PrestadorServico')
-print(' -------------  PrestadorServico:  -------------')
+cursor.execute('select * from Carhub.Prestador')
+print(' -------------  Prestador:  -------------')
 for user in cursor.fetchall():
     pprint(user)
 

@@ -1,11 +1,14 @@
 import os
 from flask_wtf import FlaskForm
-from jogoteca import app
+from Carhub import app
 from wtforms import StringField, IntegerField, validators, SubmitField, PasswordField
 
-from models import PrestadorServico
 
 
+class FormularioLogin(FlaskForm):
+    email = StringField('Email', [validators.data_required(), validators.length(min=1, max=100)])
+    senha = PasswordField('Senha', [validators.data_required(), validators.length(min=1, max=100)])
+    login = SubmitField('Login')
 class FormularioServico(FlaskForm):
     nome = StringField('Nome do serviço', [validators.data_required(), validators.length(min=1, max=50)])
     valor = IntegerField('Valor do serviço', [validators.data_required()])
@@ -14,7 +17,7 @@ class FormularioServico(FlaskForm):
     salvar = SubmitField('Salvar')
 
 
-class FormularioPrestadorServico(FlaskForm):
+class FormularioPrestador(FlaskForm):
     cnpj = StringField('CNPJ', [validators.data_required(), validators.length(min=1, max=14)])
     nome = StringField('Nome Prestador', [validators.data_required(), validators.length(min=1, max=50)])
     telefone = StringField('Telefone', [validators.data_required(), validators.length(min=1, max=11)])
