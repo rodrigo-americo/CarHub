@@ -8,7 +8,6 @@
 
 <ul>
   <li>
-      <a href="#"> Perfil</a>
       <ul class="dropdown">
           <li>
               <a href="{{ url_for('editarCliente')}}"> <p>Editar Perfil</p></a>
@@ -16,11 +15,12 @@
           <li>
               <a href="{{ url_for('logout') }}"> <p>Desconectar</p></a>
           </li>
-          <li>
               {% if prestador %}
-                <a href="{{ url_for('novo') }}"> <p>Cadastrar serviço</p></a>
+                <li>
+                    <a href="{{ url_for('novo') }}"> <p>Cadastrar serviço</p></a>
+                </li>
               {% endif %}
-        </li>
+
       </ul>
   </li>
 </ul>

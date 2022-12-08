@@ -1,21 +1,9 @@
 {% extends  'template.html'%}
 
 {% block conteudo %}
+    <div class="divimage"><img src="{{url_for('imagem',nome_arquivo='logo_menor.png')}}" alt="Logo"></div>
+    <form method="POST" action="{{ url_for('autenticar') }}">
     <div class="container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul id="messages" class="list-unstyled">
-                {% for message in messages %}
-                    <li class="alert alert-success">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-
-        <div class="divimage"><img src="{{url_for('imagem',nome_arquivo='logo_menor.png')}}" alt="Logo"></div>
-
-        <form method="POST" action="{{ url_for('autenticar') }}">
-
             <input type="hidden" name="proxima" value="{{ proxima or url_for('listarServisos') }}">
 
             {{ form.csrf_token() }}
@@ -36,9 +24,8 @@
                 {{ form.login(class="btn btn-primary") }}
                 <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
             </div>
-        </form>
-    </div>
-
+        </div>
+    </form>
 <footer>
 
     <div class="fonte">

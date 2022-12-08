@@ -114,12 +114,12 @@ for user in cursor.fetchall():
 # inserindo Serviços
 Servisos_sql = 'INSERT INTO Servisos (nome, valor,email, categoria,descricao) VALUES (%s, %s ,%s, %s,%s)'
 Servisos = [
-      ('Jogo de peneu', '50', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'troca os quatros peneus do caro'),
-      ('God of War', '15', 'oliver.diegoramos@hotmail.com', 'PS2', 'pass'),
-      ('Mortal Kombat', '10', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
-      ('Valorant', '123', 'oliver.diegoramos@hotmail.com', 'PC', 'pass'),
-      ('Crash Bandicoot', '645', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
-      ('Need for Speed', '879', 'rodrigo_7_4_7@hotmail.com', 'PS2', 'pass'),
+      ('Jogo de peneu', '50', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'Troca os quatros peneus do caro'),
+      ('Troca de Ólio', '15', 'oliver.diegoramos@hotmail.com', 'Troca', 'Troca de Ólio'),
+      ('Alinhamento do peneu', '24', 'rodrigo_7_4_7@hotmail.com', 'Revisao', 'Alinha os penus da frente e de tras para não tenha desvio quando virar'),
+      ('Limpeza do interior', '123', 'oliver.diegoramos@hotmail.com', 'Qualidade', 'Passa aspirador por todo o carro e coloca sache de pinho'),
+      ('Troca de pastilha de freio', '645', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'Troca a pastilha de freio'),
+      ('Instalar insufilme', '879', 'rodrigo_7_4_7@hotmail.com', 'Instalacao', 'Instala insulvilme com o numero que o cliente pedir'),
 ]
 cursor.executemany(Servisos_sql, Servisos)
 
@@ -130,6 +130,5 @@ for servisos in cursor.fetchall():
 
 # commitando se não nada tem efeito
 conn.commit()
-
 cursor.close()
 conn.close()
