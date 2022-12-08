@@ -38,3 +38,13 @@
 body{
     background-color: black;
 }
+.containerresultado{
+    position:relative;
+    top: 50%;
+    left: 25%;
+    width:50%;
+    height:30%;
+    margin-top: -9em; /set to a negative number 1/2 of your height/
+    margin-left: -15em; /set to a negative number 1/2 of your width/
+
+}

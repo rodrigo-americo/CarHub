@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 from Carhub import app, db
 from models import Prestador, Clientes
 from helpers import FormularioPrestador
@@ -34,18 +34,18 @@ def criarPrestador():
     return redirect(url_for('listarServisos'))
 
 
-@app.route('/editar-prestador/<string:email>')
-def editarPrestador(email):
+@app.route('/editar-prestador')
+def editarPrestador():
+    email = session['usuario_logado']
+    print(email)
     prestador = Prestador.query.filter_by(email=email).first()
     form = FormularioPrestador()
 
     form.cnpj.data = prestador.cnpj
     form.nome.data = prestador.nome
-    form.data.data = prestador.data
     form.telefone.data = prestador.telefone
     form.email.data = prestador.email
-    form.localidade.data = prestador.localicade
-
+    form.localidade.data = prestador.localidade
     return render_template('editarPrestador.html', titulo='Editar Infos',
                            email=email, form=form)
 
@@ -55,7 +55,7 @@ def atualizarPrestador():
     form = FormularioPrestador(request.form)
     if form.validate_on_submit():
         prestador = Prestador.query.filter_by(email=request.form['email']).first()
-        prestador.cpf = form.cnpj.data
+        prestador.cnpj = form.cnpj.data
         prestador.nome = form.nome.data
         prestador.data = form.data.data
         prestador.telefone = form.telefone.data

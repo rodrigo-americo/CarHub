@@ -100,7 +100,7 @@ prestadores = [
        "cleber@hotmail.com", " Henrique Felipe da Costa, 682 - Vila Guilherme",
        generate_password_hash("1234").decode("utf-8")),
       ("99999999999946", "Hubens", "11970867253",
-       "hubens@hotmail.com", "pass ", generate_password_hash("1234").decode("utf-8"))
+       "hubens@hotmail.com", " Henrique Felipe da Costa, 682 - Vila Guilherme", generate_password_hash("1234").decode("utf-8"))
 ]
 cursor.executemany(prestadores_sql, prestadores)
 
@@ -114,17 +114,17 @@ for user in cursor.fetchall():
 # inserindo Serviços
 Servisos_sql = 'INSERT INTO Servisos (nome, valor,email, categoria,descricao) VALUES (%s, %s ,%s, %s,%s)'
 Servisos = [
-      ('Jogo de peneu', '50', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'Troca os quatros peneus do caro'),
-      ('Troca de Ólio', '15', 'oliver.diegoramos@hotmail.com', 'Troca', 'Troca de Ólio'),
-      ('Alinhamento do peneu', '24', 'rodrigo_7_4_7@hotmail.com', 'Revisao', 'Alinha os penus da frente e de tras para não tenha desvio quando virar'),
-      ('Limpeza do interior', '123', 'oliver.diegoramos@hotmail.com', 'Qualidade', 'Passa aspirador por todo o carro e coloca sache de pinho'),
-      ('Troca de pastilha de freio', '645', 'rodrigo_7_4_7@hotmail.com', 'Troca', 'Troca a pastilha de freio'),
-      ('Instalar insufilme', '879', 'rodrigo_7_4_7@hotmail.com', 'Instalacao', 'Instala insulvilme com o numero que o cliente pedir'),
+      ('Jogo de peneu', '50', 'hubens@hotmail.com', 'Troca', 'Troca os quatros peneus do caro'),
+      ('Troca de Ólio', '15', 'cleber@hotmail.com', 'Troca', 'Troca de Ólio'),
+      ('Alinhamento do peneu', '24', 'hubens@hotmail.com', 'Revisao', 'Alinha os penus da frente e de tras para não tenha desvio quando virar'),
+      ('Limpeza do interior', '123', 'cleber@hotmail.comm', 'Qualidade', 'Passa aspirador por todo o carro e coloca sache de pinho'),
+      ('Troca de pastilha de freio', '645', 'hubens@hotmail.com', 'Troca', 'Troca a pastilha de freio'),
+      ('Instalar insufilme', '879', 'hubens@hotmail.com', 'Instalacao', 'Instala insulvilme com o numero que o cliente pedir'),
 ]
 cursor.executemany(Servisos_sql, Servisos)
 
 cursor.execute('select * from Carhub.Servisos')
-print(' -------------  Jogos:  -------------')
+print(' -------------  Produtos:  -------------')
 for servisos in cursor.fetchall():
    pprint(servisos)
 

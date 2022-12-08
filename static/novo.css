@@ -1,0 +1,62 @@
+.container {
+    position:relative;
+    top: 40%;
+    left: 47%;
+    width:30%;
+    height:max-content;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    justify-content: space-around;
+    background-color: white;
+  }
+  body{
+    background: black;
+    
+  
+  }
+  .fonte {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color:black; 
+  }
+  footer{
+
+    position:fixed;
+    top: 97%;
+    left: 1%;
+    width:50em;
+    height:30em;
+    
+  
+}
+.titulo{
+    font-size: 50px;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.divtitulo{
+    position:fixed;
+    top: 25%;
+    left: 44%;
+    width:60%;
+    height:60em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+
+}
+.labeladicionar{
+    width: 300px;
+    font-size: 20px;
+
+}
+.button {
+    background-color: black; /* Green */
+    border-radius: 8px;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    
+  }

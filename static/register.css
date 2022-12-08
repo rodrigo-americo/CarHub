@@ -4,13 +4,13 @@
   left: 50%;
   width:30em;
   height:18em;
-  margin-top: -9em; /*set to a negative number 1/2 of your height*/
-  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  margin-top: -9em;
+  margin-left: -15em;
   
 }
-/*ACHAR CONFIGURAÇÃO DO BOTÃO*/
+
 .button {
-  background-color: white; /* Green */
+  background-color: white;
   border-radius: 8px;
   color: black;
   padding: 10px 24px;
@@ -19,15 +19,9 @@
   display: inline-block;
   font-size: 18px;
 }
-/* ACHAR BOM IDEAL PARA LOGO*/
 
-/*achar um boa ideia de background*/
 body{
   background: black;
-  /*
-  background-color: black;
-  linear-gradient(to right, black, white);
-  */
 }
 
 .divimage{
@@ -36,8 +30,8 @@ body{
   left: 56%;
   width: 100px;
   height:300px;
-  margin-top: -9em; /*set to a negative number 1/2 of your height*/
-  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  margin-top: -9em;
+  margin-left: -15em;
 
 }
 .fonte {
@@ -54,21 +48,4 @@ width:50em;
 height:30em;
 margin-top: -9em; /*set to a negative number 1/2 of your height*/
 margin-left: -15em; /*set to a negative number 1/2 of your width*/
-}
-
-footer{
-
-  position:fixed;
-  top: 97%;
-  left: 1%;
-  width:50em;
-  height:30em;
-  
-}
-
-.botoes{
-  margin-left: 5px;
-
-
-
 }

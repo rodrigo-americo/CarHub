@@ -81,3 +81,14 @@ h1{
 .fonte{
     padding:10px;
 }
+.labeleditar{
+    width: 300px;
+    font-size: 20px;
+
+}
+.imgeditar{
+    margin-top: -5px;
+    margin-left: 0%;
+    height: 2px;
+
+}

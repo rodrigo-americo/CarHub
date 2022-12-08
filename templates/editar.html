@@ -1,38 +1,91 @@
-{% extends  'template.html'%}
-{% block conteudo %}
-      <form class="formularioJogo" action="{{ url_for('atualizar') }}" method="post" enctype="multipart/form-data">
+<html>
+  <head>
+    <link rel="stylesheet" href = "../static/novo.css">
+    <link rel="stylesheet" href = "../static/navbar.css">
+  </head> 
+  <body>
+
+
+    <body>
+      <ul>
+          <li>
+              <a href="#"> Perfil</a>
+              <ul class="dropdown">
+                  <li>
+                      <a href="{{ url_for('editarCliente')}}"> <p>Editar Perfil</p></a>
+                  </li>
+                  <li>
+                      <a href="{{ url_for('logout') }}"> <p>Desconectar</p></a>
+                  </li>
+                      {% if prestador %}
+                        <li>
+                            <a href="{{ url_for('novo') }}"> <p>Cadastrar serviço</p></a>
+                        </li>
+                      {% endif %}
+        
+              </ul>
+          </li>
+      </ul>
+      <div class="divtitulo">
+        <p class ='titulo'>Adicionar Produto/Serviço</p>
+      </div>
+        
+   
+
+      <fieldset class="container">
+
+
+
+    <form class="formularioJogo" action="{{ url_for('criar') }}" method="post" enctype="multipart/form-data">
+
+
+
+     
+        {{ form.csrf_token() }}
+        <div class="fonte">
+          {{form.nome.label(class="labeladicionar")}}
+          {{form.nome(class="form-control")}}
+        </div>
+        <div class="fonte">
+          {{form.valor.label(class="labeladicionar")}}
+          {{form.valor(class="form-control")}}
+        </div>
+        <div class="fonte">
+          {{form.categoria.label(class="labeladicionar")}}
+          {{form.categoria(class="form-control")}}
+        </div>
+        <div class="fonte">
+          {{form.descricao.label(class="form-label")}}
+          {{form.descricao(class="form-control")}}
+        </div>
         <figure class="img-thumbnail col-md-4 formularioImagem">
-          <img class="img-fluid " src="{{url_for('imagem',nome_arquivo=capa_jogo)}}">
-          <figcaption>
-            <label class="fileContanier">
-              Mudar Capa
-              <input type="file" name="arquivo" accept=".jpg">
-            </label>
-          </figcaption>
-        </figure>
-        <fieldset>
-          <input type="hidden" name="id" value="{{id}}">
-          {{ form.csrf_token() }}
-          <div class="form-group inputBox">
-            {{form.nome.label(class="form-label")}}
-            {{form.nome(class="form-control")}}
-          </div>
-          <div class="form-group inputBox">
-            {{form.valor.label(class="form-label")}}
-            {{form.valor(class="form-control")}}
-          </div>
-          <div class="form-group inputBox">
-            {{form.categoria.label(class="form-label")}}
-            {{form.categoria(class="form-control")}}
-          </div>
-          <div class="form-group inputBox">
-            {{form.descricao.label(class="form-label")}}
-            {{form.descricao(class="form-control")}}
-          </div>
-          <div  class="form-group buttons">
-            {{form.salvar(class="btn-primary")}}
-            <a class="btn btn-danger" href="{{ url_for('listarServisos') }}">Voltar</a>
-          </div>
-        </fieldset>
-      </form>
-{% endblock %}
+            <img class="img-fluid" style="width : 150px ; height:150px" src="{{url_for('imagem',nome_arquivo='capa_padrao.jpg')}}">
+            <figcaption>
+              <label class="fileContanier">
+                <input type="file" name="arquivo" accept=".jpg">
+              </label>
+            </figcaption>
+          </figure>
+        <div  class="fonte">
+          {{form.salvar(class="button")}}
+          <a class="button" href="{{ url_for('listarServisos') }}">Voltar</a>
+        </div>
+
+
+
+      </fieldset>
+    </form>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='app.js')}}"></script>
+  </body>
+  <footer>
+
+    <div>
+      <p class="footer">  Aviso de NÃO posse dos direitos autorais da marca CarHUB ©
+
+      </p>
+    </div>
+
+  </footer>
+</html>
